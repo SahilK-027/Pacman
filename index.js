@@ -1,4 +1,4 @@
-// Step 1: Project setup
+// * Step 1: Project setup
 /*
 Selecting the canvas element from html file and changing its width and height to window width and height
 */
@@ -11,7 +11,7 @@ const scoreEl = document.getElementById('scoreEl')
 
 
 
-// Step 2: Generate map boundaries
+// * Step 2: Generate map boundaries
 class Boundary {
     // Our boundary will be made up of number of squares so width and height of each square will be 40px .
     static width = 40;
@@ -65,7 +65,7 @@ function createImage(src) {
 
 
 
-// Step3: adding collectable items for player
+// * Step3: adding collectable items for player
 const pellets = []
 class Pellets {
     constructor({ position }) {
@@ -83,7 +83,7 @@ class Pellets {
 
 
 
-// Step 4 : creating powerUp
+// * Step 4 : creating powerUp
 const powerUps = []
 class PowerUp {
     constructor({ position }) {
@@ -310,7 +310,7 @@ map.forEach((row, i) => {
 
 
 
-// Step 5: Add Player with movement
+// * Step 5: Add Player with movement
 // Getting circle drawn on the canvas
 class Player {
     constructor({ position, velocity }) {
@@ -361,7 +361,7 @@ const player = new Player({
 
 
 
-// Step 6: Creating enemy
+// * Step 6: Creating enemy
 class Enemy {
     constructor({ position, velocity, color = "red" }) {
         this.position = position;
@@ -425,7 +425,7 @@ const enemies = [
 
 
 
-// Step 7 : Key press functionality
+// * Step 7 : Key press functionality
 const keys = {
     w: {
         pressed: false
@@ -493,7 +493,7 @@ window.addEventListener('keyup', ({ key }) => {
 
 
 
-// Step 8: Add collision detection logic
+// * Step 8: Add collision detection logic
 function circleCollidesWithRectangle({
     circle,
     rectangle
@@ -651,7 +651,7 @@ function animate() {
         pellet.draw();
 
 
-        // Step 9: Player eats pellets
+        //* Step 9: Player eats pellets
         if (Math.hypot(pellet.position.x - player.position.x,
             pellet.position.y - player.position.y) < pellet.radius + player.radius) {
             console.log("eats")
