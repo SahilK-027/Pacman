@@ -4,8 +4,8 @@ Selecting the canvas element from html file and changing its width and height to
 */
 const canvas = document.querySelector('canvas')
 c = canvas.getContext('2d')
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
+canvas.width = 1440
+canvas.height = 520
 
 const scoreEl = document.getElementById('scoreEl')
 
@@ -39,19 +39,19 @@ const map = [
     * * * * * * *
     */
     // First row for boundary
-    ['1', '-', '-', '-', '-', '-', '-', '-', '-', '-', '2'],
-    ['|', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
-    ['|', '.', 'b', '.', '[', '7', ']', '.', 'b', '.', '|'],
-    ['|', '.', '.', '.', '.', '_', '.', '.', '.', '.', '|'],
-    ['|', '.', '[', ']', '.', '.', '.', '[', ']', '.', '|'],
-    ['|', '.', '.', '.', '.', '^', '.', '.', '.', '.', '|'],
-    ['|', '.', 'b', '.', '[', '+', ']', '.', 'b', '.', '|'],
-    ['|', '.', '.', '.', '.', '_', '.', '.', '.', '.', '|'],
-    ['|', '.', '[', ']', '.', '.', '.', '[', ']', '.', '|'],
-    ['|', '.', '.', '.', '.', '^', '.', '.', '.', '.', '|'],
-    ['|', '.', 'b', '.', '[', '5', ']', '.', 'b', '.', '|'],
-    ['|', '.', '.', '.', '.', '.', '.', '.', '.', 'p', '|'],
-    ['4', '-', '-', '-', '-', '-', '-', '-', '-', '-', '3']
+    ['1', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '2'],
+    ['|', '.', '.', '.', '.', '.', '.', '.', '.', 'p', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'p', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
+    ['|', '.', 'b', '.', '[', '7', ']', '.', 'b', '.', 'b', '.', '[', '7', ']', '.', 'b', '.', 'b', '.', '[', '7', ']', '.', 'b', '.', 'b', '.', '[', '7', ']', '.', 'b', '.', '|'],
+    ['|', '.', '.', '.', '.', '_', '.', '.', '.', '.', '.', '.', '.', '_', '.', '.', '.', '.', '.', '.', '.', '_', '.', '.', '.', '.', '.', '.', '.', '_', '.', '.', '.', '.', '|'],
+    ['|', '.', '[', ']', '.', '.', '.', '[', ']', '.', '[', ']', '.', '.', '.', '[', ']', '.', '[', ']', '.', '.', '.', '[', ']', '.', '[', ']', '.', '.', '.', '[', ']', '.', '|'],
+    ['|', '.', '.', '.', '.', '^', '.', '.', '.', '.', '.', '.', '.', '^', '.', '.', '.', '.', '.', '.', '.', '^', '.', '.', '.', '.', '.', '.', '.', '^', '.', '.', '.', '.', '|'],
+    ['|', '.', 'b', '.', '[', '+', ']', '.', 'b', '.', 'b', '.', '[', '+', ']', '.', '[', '-', ']', '.', '[', '+', ']', '.', 'b', '.', 'b', '.', '[', '+', ']', '.', 'b', '.', '|'],
+    ['|', '.', '.', '.', '.', '_', '.', '.', '.', '.', '.', '.', '.', '_', '.', '.', '.', '.', '.', '.', '.', '_', '.', '.', '.', '.', '.', '.', '.', '_', '.', '.', '.', '.', '|'],
+    ['|', '.', '[', ']', '.', '.', '.', '[', ']', '.', '[', ']', '.', '.', '.', '[', ']', '.', '[', ']', '.', '.', '.', '[', ']', '.', '[', ']', '.', '.', '.', '[', ']', '.', '|'],
+    ['|', '.', '.', '.', '.', '^', '.', '.', '.', '.', '.', '.', '.', '^', '.', '.', '.', '.', '.', '.', '.', '^', '.', '.', '.', '.', '.', '.', '.', '^', '.', '.', '.', '.', '|'],
+    ['|', '.', 'b', '.', '[', '5', ']', '.', 'b', '.', 'b', '.', '[', '5', ']', '.', 'b', '.', 'b', '.', '[', '5', ']', '.', 'b', '.', 'b', '.', '[', '5', ']', '.', 'b', '.', '|'],
+    ['|', '.', '.', '.', '.', '.', '.', '.', '.', 'p', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', 'p', '.', '.', '.', '.', '.', '.', '.', '.', '|'],
+    ['4', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '3']
 ]
 const boundaries = []
 function createImage(src) {
@@ -327,7 +327,7 @@ class Player {
         c.rotate(this.rotation);
         c.translate(-this.position.x, -this.position.y);
         c.beginPath();
-        c.arc(this.position.x, this.position.y, this.radius, this.mouth  , Math.PI * 2 - this.mouth );
+        c.arc(this.position.x, this.position.y, this.radius, this.mouth, Math.PI * 2 - this.mouth);
         c.lineTo(this.position.x, this.position.y)
         c.fillStyle = '#FFD700'
         c.fill();
@@ -339,8 +339,8 @@ class Player {
         this.draw();
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
-        if(this.mouth < 0 || this.mouth > 0.75){
-            this.openRate = -this.openRate 
+        if (this.mouth < 0 || this.mouth > 0.75) {
+            this.openRate = -this.openRate
         }
         this.mouth += this.openRate
     }
@@ -398,26 +398,54 @@ const enemies = [
     }),
     new Enemy({
         position: {
-            x: Boundary.width * 6 + Boundary.width / 2,
-            y: Boundary.height * 5 + Boundary.height / 2
+            x: Boundary.width * 9 + Boundary.width / 2,
+            y: Boundary.height * 6 + Boundary.height / 2
         },
         velocity: {
-            x: 2,
-            y: 0
-        },
-        color: "pink"
+            x: 0,
+            y: -2
+        }
     }),
     new Enemy({
         position: {
-            x: Boundary.width * 6 + Boundary.width / 2,
-            y: Boundary.height * 7 + Boundary.height / 2
+            x: Boundary.width * 33 + Boundary.width / 2,
+            y: Boundary.height * 1 + Boundary.height / 2
         },
         velocity: {
-            x: 2,
+            x: -2,
             y: 0
+        }
+    }),
+    new Enemy({
+        position: {
+            x: Boundary.width * 33 + Boundary.width / 2,
+            y: Boundary.height * 11 + Boundary.height / 2
         },
-        color: "cyan"
-    })
+        velocity: {
+            x: -2,
+            y: 0
+        }
+    }),
+    new Enemy({
+        position: {
+            x: Boundary.width * 17 + Boundary.width / 2,
+            y: Boundary.height * 11 + Boundary.height / 2
+        },
+        velocity: {
+            x: 0,
+            y: -2
+        }
+    }),
+    new Enemy({
+        position: {
+            x: Boundary.width * 17 + Boundary.width / 2,
+            y: Boundary.height * 1 + Boundary.height / 2
+        },
+        velocity: {
+            x: 0,
+            y: 2
+        }
+    }),
 ]
 
 
@@ -465,7 +493,6 @@ window.addEventListener('keydown', ({ key }) => {
             lastKey = 'd'
             break;
     }
-    console.log(player.velocity);
 })
 // Adding event listener for the key not pressed
 window.addEventListener('keyup', ({ key }) => {
@@ -484,7 +511,6 @@ window.addEventListener('keyup', ({ key }) => {
             keys.d.pressed = false;
             break;
     }
-    console.log(player.velocity);
 })
 
 
@@ -519,7 +545,6 @@ function circleCollidesWithRectangle({
 let animateID   // This variable will store the id of current frame
 function animate() {
     animateID = requestAnimationFrame(animate);
-    console.log(animateID);
     //(from x,y ==(0, 0), to full width and height clear canvas)
     c.clearRect(0, 0, canvas.width, canvas.height);
     if (keys.w.pressed && lastKey == 'w') {
@@ -623,7 +648,6 @@ function animate() {
         })) {
             player.velocity.x = 0
             player.velocity.y = 0
-            console.log("WE ARE COLLIDING")
         }
     })
     // Drawing moved player
@@ -637,6 +661,8 @@ function animate() {
             powerUp.position.y - player.position.y) < powerUp.radius + player.radius) {
             // Make enemy vulnerable
             powerUps.splice(index, 1);
+            var audio = new Audio("./assets/sounds/eat_powerup.wav");
+            audio.play();
             enemies.forEach(enemy => {
                 enemy.scared = true;
 
@@ -650,11 +676,9 @@ function animate() {
     pellets.forEach((pellet, index) => {
         pellet.draw();
 
-
         //* Step 9: Player eats pellets
         if (Math.hypot(pellet.position.x - player.position.x,
             pellet.position.y - player.position.y) < pellet.radius + player.radius) {
-            console.log("eats")
             pellets.splice(index, 1);
             score += 10;
             scoreEl.innerHTML = score
@@ -669,12 +693,15 @@ function animate() {
             enemy.position.y - player.position.y) < enemy.radius + player.radius
         ) {
             if (enemy.scared) {
-                enemies.splice(i,1);
+                var audio = new Audio("./assets/sounds/eat_ghosts.mp3");
+                audio.play();
+                enemies.splice(i, 1);
             }
             // If player collides with the enemy then cancel that particular animation frame
             else {
+                var audio = new Audio("./assets/sounds/death.wav");
+                audio.play();
                 cancelAnimationFrame(animateID);
-                alert("YOU LOSE");
             }
         }
     }
@@ -747,9 +774,6 @@ function animate() {
             enemy.prevCollisions = collisions
         }
         if (JSON.stringify(collisions) !== JSON.stringify(enemy.prevCollisions)) {
-            console.log("go");
-            console.log(collisions);
-            console.log(enemy.prevCollisions);
             // For finding possible paths for our enemy to move we can filter out new collisions from prev collisions
             // EX. if previously enemy was colliding up and down 
             // and currently it is colliding only up =>  then down is a new path
@@ -768,11 +792,9 @@ function animate() {
             const pathWays = enemy.prevCollisions.filter(collision => {
                 return !collisions.includes(collision)
             })
-            console.log({ pathWays });
             // Extracting random value from path ways array to set the direction of enemy
 
             const direction = pathWays[Math.floor(Math.random() * pathWays.length)]
-            console.log({ direction })
 
             switch (direction) {
                 case 'down':
@@ -794,29 +816,31 @@ function animate() {
             }
             enemy.prevCollisions = [];
         }
-        console.log(collisions);
     })
 
 
     // rotation logic
-    if(player.velocity.x > 0){
+    if (player.velocity.x > 0) {
         player.rotation = 0;
     }
-    else if(player.velocity.x < 0){
+    else if (player.velocity.x < 0) {
         player.rotation = Math.PI;
     }
-    else if(player.velocity.y > 0){
+    else if (player.velocity.y > 0) {
         player.rotation = Math.PI / 2;
     }
-    else if(player.velocity.y < 0){
+    else if (player.velocity.y < 0) {
         player.rotation = Math.PI * 1.5;
     }
 
 
     // WIN CONDITION
-    if(pellets.length == 0){
+    if (pellets.length == 0) {
+        var audio = new Audio("./assets/sounds/victory-sound.mp3");
+        audio.play();
+        var audio = new Audio("./assets/sounds/you-win.mp3");
+        audio.play();
         cancelAnimationFrame(animateID);
-        alert("YOU WIN");
     }
 
 }

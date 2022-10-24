@@ -10,18 +10,23 @@
             background-color: #000;
             margin: 0;
         }
-
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>PACMAN</title>
 </head>
 
 <body>
-   
-    <p style="color: white; font-family:sans-serif; font-size: 14px">
-        <span>
-            SCORE : <span id="scoreEl"> 0 </span>
-        </span> 
-    </p>
+    <div style="display: flex; align-items:center; justify-content:space-around;" class="title">
+        <p style="color: white; font-family: 'Press Start 2P', cursive; font-size: 35px; color: #fcc92f;">
+            <span>
+                SCORE : <span id="scoreEl"> 0 </span>
+            </span>
+        </p>
+        <img height="200px" src="./assets/title.png" alt="title" style="padding: 30px 0;">
+    </div>
+    </div>
     <canvas>
     </canvas>
     <script src="index.js"></script>
