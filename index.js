@@ -175,7 +175,7 @@ map.forEach((row, i) => {
                             x: Boundary.width * j,
                             y: Boundary.height * i
                         },
-                        image: createImage('./assets/block.png')
+                        image: createImage('./assets/block-2.png')
                     })
                 )
                 break
