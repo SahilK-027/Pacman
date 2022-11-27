@@ -1,3 +1,28 @@
+// Voice Assistance Code
+var alanBtnInstance = alanBtn({
+    key: "b3f0b0f9044dc2db2bb3f35e45b480c42e956eca572e1d8b807a3e2338fdd0dc/stage",
+    onCommand: function (commandData) {
+        if (commandData.command === "go:back") {
+            //call client code that will react on the received command
+        }
+    },
+    onCommand: function (commandData) {
+        if (commandData.command === 'stop') {
+            stopFn();
+        }
+    },
+    rootEl: document.getElementById("alan-btn"),
+});
+
+function stopFn() {
+    for (let i = 0; i < boundaries.length; i++) {
+        player.velocity.y = 0;
+        player.velocity.x = 0;
+    }
+}
+
+
+
 // * Step 1: Project setup
 /*
 Selecting the canvas element from html file and changing its width and height to window width and height
@@ -385,35 +410,18 @@ class Enemy {
         this.position.y += this.velocity.y
     }
 }
+
+var vel = 2
+
 const enemies = [
     new Enemy({
         position: {
-            x: Boundary.width * 9 + Boundary.width / 2,
-            y: Boundary.height * 6 + Boundary.height / 2
-        },
-        velocity: {
-            x: 0,
-            y: 2
-        }
-    }),
-    new Enemy({
-        position: {
-            x: Boundary.width * 9 + Boundary.width / 2,
-            y: Boundary.height * 6 + Boundary.height / 2
-        },
-        velocity: {
-            x: 0,
-            y: -2
-        }
-    }),
-    new Enemy({
-        position: {
             x: Boundary.width * 33 + Boundary.width / 2,
             y: Boundary.height * 1 + Boundary.height / 2
         },
         velocity: {
-            x: -2,
-            y: 0
+            x: -1*vel,
+            y: 0,
         }
     }),
     new Enemy({
@@ -422,7 +430,7 @@ const enemies = [
             y: Boundary.height * 11 + Boundary.height / 2
         },
         velocity: {
-            x: -2,
+            x: -1 * vel,
             y: 0
         }
     }),
@@ -433,7 +441,7 @@ const enemies = [
         },
         velocity: {
             x: 0,
-            y: -2
+            y: -1 * vel
         }
     }),
     new Enemy({
@@ -443,7 +451,7 @@ const enemies = [
         },
         velocity: {
             x: 0,
-            y: 2
+            y: vel
         }
     }),
 ]
@@ -707,7 +715,6 @@ function animate() {
     }
     enemies.forEach(enemy => {
         enemy.move();
-
         const collisions = []
         boundaries.forEach(boundary => {
             if (
@@ -848,5 +855,20 @@ animate()
 /*
  * AI BEHIND THE GHOST
  * => We need to keep track of our enemies' collisions at all times, so at any given location, a collision could happen on the top, bottom, or right. As a result, the ghost will be pursuing our player and will choose their route based on the heuristic of the fewest possible collisions and getting closer to them.
- 
  */
+
+
+
+// intent('Hello world', p => {
+//     p.play('Hi there');
+// });
+
+// intent('stop', p=>{
+//     p.play({command: 'stop'});
+//     p.play('stopped');
+// });
+
+// intent('start', p=>{
+//     p.play({command: 'start'});
+//     p.play('Game Begins');
+// });
