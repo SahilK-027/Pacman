@@ -444,16 +444,16 @@ const enemies = [
             y: -1 * vel
         }
     }),
-    new Enemy({
-        position: {
-            x: Boundary.width * 17 + Boundary.width / 2,
-            y: Boundary.height * 1 + Boundary.height / 2
-        },
-        velocity: {
-            x: 0,
-            y: vel
-        }
-    }),
+    // new Enemy({
+    //     position: {
+    //         x: Boundary.width * 17 + Boundary.width / 2,
+    //         y: Boundary.height * 1 + Boundary.height / 2
+    //     },
+    //     velocity: {
+    //         x: 0,
+    //         y: vel
+    //     }
+    // }),
 ]
 
 
