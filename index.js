@@ -1,40 +1,35 @@
-// Voice Assistance Code
-var alanBtnInstance = alanBtn({
-    key: "b3f0b0f9044dc2db2bb3f35e45b480c42e956eca572e1d8b807a3e2338fdd0dc/stage",
-    onCommand: function (commandData) {
-        if (commandData.command === "go:back") {
-            //call client code that will react on the received command
-        }
-    },
-    onCommand: function (commandData) {
-        if (commandData.command === 'stop') {
-            stopFn();
-        }
-    },
-    rootEl: document.getElementById("alan-btn"),
-});
-
-function stopFn() {
-    for (let i = 0; i < boundaries.length; i++) {
-        player.velocity.y = 0;
-        player.velocity.x = 0;
-    }
-}
-
-
-
 // * Step 1: Project setup
 /*
 Selecting the canvas element from html file and changing its width and height to window width and height
 */
 const canvas = document.querySelector('canvas')
 c = canvas.getContext('2d')
-canvas.width = 1440
-canvas.height = 520
-
 const scoreEl = document.getElementById('scoreEl')
 
 
+/**
+ * Sizes
+ */
+const sizes = {
+    width: window.innerWidth,
+    height: window.innerHeight
+}
+// Resize window
+window.addEventListener('resize',()=>{
+    // Update sizes
+    sizes.width = window.innerWidth;
+    sizes.height =  window.innerHeight;
+    // Update camera aspect
+    camera.aspect = sizes.width / sizes.height;
+    camera.updateProjectionMatrix();
+    // Update renderer
+    renderer.setSize(sizes.width, sizes.height)
+
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+})
+
+canvas.width = sizes.width
+canvas.height = sizes.height
 
 // * Step 2: Generate map boundaries
 class Boundary {
@@ -444,16 +439,16 @@ const enemies = [
             y: -1 * vel
         }
     }),
-    // new Enemy({
-    //     position: {
-    //         x: Boundary.width * 17 + Boundary.width / 2,
-    //         y: Boundary.height * 1 + Boundary.height / 2
-    //     },
-    //     velocity: {
-    //         x: 0,
-    //         y: vel
-    //     }
-    // }),
+    new Enemy({
+        position: {
+            x: Boundary.width * 17 + Boundary.width / 2,
+            y: Boundary.height * 1 + Boundary.height / 2
+        },
+        velocity: {
+            x: 0,
+            y: vel
+        }
+    }),
 ]
 
 
@@ -857,18 +852,3 @@ animate()
  * => We need to keep track of our enemies' collisions at all times, so at any given location, a collision could happen on the top, bottom, or right. As a result, the ghost will be pursuing our player and will choose their route based on the heuristic of the fewest possible collisions and getting closer to them.
  */
 
-
-
-// intent('Hello world', p => {
-//     p.play('Hi there');
-// });
-
-// intent('stop', p=>{
-//     p.play({command: 'stop'});
-//     p.play('stopped');
-// });
-
-// intent('start', p=>{
-//     p.play({command: 'start'});
-//     p.play('Game Begins');
-// });
